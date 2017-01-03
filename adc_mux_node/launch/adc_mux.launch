@@ -1,0 +1,13 @@
+<launch>
+
+  <!-- ADC MUX -->
+
+  <arg name="adc_mux_file" default="$(find adc_mux_node)/config/adc_mux.yaml"/> 
+  <node pkg="adc_mux_node" type="adc_mux_node.py" name="adc_mux_node" output="screen">
+    <rosparam file="$(arg adc_mux_file)" command="load"/>
+  </node>
+
+</launch>
+
+
+

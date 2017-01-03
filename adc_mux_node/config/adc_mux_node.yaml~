@@ -1,0 +1,6 @@
+frame_id_0: ultrasonic_0_link
+frame_id_1: ultrasonic1_link
+pwm_pin_0: 32
+pwm_pin_1: 33
+frequency: 30
+

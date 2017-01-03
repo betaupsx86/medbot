@@ -1,0 +1,7 @@
+frame_id_0: ultrasonic_0_link
+frame_id_1: ultrasonic_1_link
+frame_id_2: ultrasonic_2_link
+busnum: 0
+frequency: 15
+gain: 1
+

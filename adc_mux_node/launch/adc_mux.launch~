@@ -1,0 +1,18 @@
+<launch>
+
+  <!-- ADC MUX -->
+
+  <arg name="adc_mux_file" default="$(find adc_mux_node)/config/adc_mux.yaml"/> 
+  <node pkg="adc_mux_node" type="adc_mux_node.py" name="adc_mux_node" output="screen">
+    <rosparam file="$(arg adc_mux_file)" command="load"/>
+  </node>
+
+</launch>
+
+    busnum = rospy.get_param('~busnum', '0')
+    frequency = rospy.get_param('~frequency', 15)
+    gain = rospy.get_param('~gain', 1)
+    frame_id_0 = rospy.get_param('~frame_id', 'ultrasonic_0_link')
+    frame_id_1 = rospy.get_param('~frame_id', 'ultrasonic_1_link')
+
+

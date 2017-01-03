@@ -1,0 +1,27 @@
+calibration:
+- 245
+- 255
+- 226
+- 255
+- 9
+- 0
+- 90
+- 255
+- 85
+- 0
+- 150
+- 255
+- 0
+- 0
+- 255
+- 255
+- 0
+- 0
+- 232
+- 3
+- 223
+- 1
+frame_id: imu_link
+frequency: 100
+operation_mode: 8
+port: /dev/ttyUSB0

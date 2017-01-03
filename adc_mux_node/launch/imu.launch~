@@ -1,0 +1,12 @@
+<launch>
+
+  <!-- LV MaxSonar EZ -->
+
+  <arg name="lv_maxsonar_ez_file" default="$(lv_maxsonar_node)/config/lv_maxsonar_ez.yaml"/> 
+  <node pkg="lv_maxsonar_node" type="lv_maxsonar_node.py" name="lv_maxsonar_node" output="screen">
+    <rosparam file="$(arg lv_maxsonar_ez_file)" command="load"/>
+  </node>
+
+</launch>
+
+

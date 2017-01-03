@@ -1,0 +1,37 @@
+<package>
+  <name>breaker_board_node</name>
+  <version>2.3.1</version>
+  <description>
+    iRobot Create ROS driver node
+    
+    ROS bindings for the Create/Roomba driver.
+    
+    This is based on otl_roomba driver by OTL, ported to use
+    create_driver's implementation instead. 
+    This also contains a 'bonus' feature from the turtlebot 
+    driver by Xuwen Cao and Morgan Quigley.
+  </description>
+  <maintainer email="turtlebot@osrfoundation.org">OSRF</maintainer>
+  <license>BSD</license>
+  <url type="website">http://ros.org/wiki/create_node</url>
+  <url type="repository">https://github.com/turtlebot/turtlebot_create</url>
+  <url type="bugtracker">https://github.com/turtlebot/turtlebot_create/issues</url>
+  <author email="kwc@kwc.org">Ken Conley</author>
+  <author email="mwise@willowgarage.com">Melonee Wise</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>message_generation</build_depend>
+  <build_depend>Adafruit_GPIO</build_depend>
+  <build_depend>std_msgs</build_depend>
+
+
+  <run_depend>message_runtime</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>Adafruit_GPIO</run_depend>
+  <run_depend>std_msgs</run_depend>
+
+
+  <export>
+  </export>
+</package>

@@ -1,0 +1,12 @@
+<launch>
+
+  <!-- Run Bosch BNO055 IMU -->
+
+  <arg name="breaker_board_config_file" default="$(find breaker_board_node)/config/breaker_board.yaml"/> 
+  <node pkg="breaker_board_node" type="breaker_board.py" name="breaker_board_node" output="screen">
+    <rosparam file="$(arg breaker_board_config_file)" command="load"/>
+  </node>
+
+</launch>
+
+
