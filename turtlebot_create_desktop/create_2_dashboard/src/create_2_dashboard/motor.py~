@@ -1,0 +1,47 @@
+import rospy
+
+from functools import partial
+
+from std_msgs.msg import Float32
+
+from rqt_robot_dashboard.widgets import IconToolButton
+from python_qt_binding.QtCore import QSize
+
+class MotorWidget(IconToolButton):
+    def __init__(self, topic):
+        self._pub = rospy.Publisher(topic, Float32, queue_size=5)
+
+        self._off_icon = ['bg-red.svg', 'ic-motors.svg']
+        self._on_icon = ['bg-green.svg', 'ic-motors.svg']
+        
+        icons = [self._off_icon, self._on_icon]
+        super(MotorWidget, self).__init__(topic, icons=icons)
+        self.setFixedSize(QSize(40,40))
+
+        super(MotorWidget, self).update_state(0)
+        self.setToolTip("Motors: Off")
+
+        self.clicked.connect(self.toggle)
+
+
+    def update_state(self, state):
+        if state is not super(MotorWidget, self).state:
+            super(MotorWidget, self).update_state(state)
+            if state is 0:
+                self.setToolTip("Motors: Off")
+            else:
+                self.setToolTip("Motors: On")
+
+    def toggle(self):	
+        if super(MotorWidget, self).state is 1:
+            self._pub.publish(0.0)
+            super(MotorWidget, self).update_state(0)
+            self.setToolTip("Motors: Off")
+        else:
+            self._pub.publish(1.0)
+            super(MotorWidget, self).update_state(1)
+            self.setToolTip("Motors: On")
+
+    def close(self):
+        self._pub.unregister()
+

@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<!--
+  Hexagon stacks
+ -->
+<robot name="stack_hull" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find turtlebot_description)/urdf/common_properties.urdf.xacro"/>
+  
+  <!-- Xacro properties -->
+  <xacro:property name="M_SCALE" value="0.001"/>
+  
+  <!-- Xacro macros -->
+  <!-- Pole macros -->
+  
+
+  <xacro:macro name="stack_3d_sensor_pole" params="parent number x_loc y_loc z_loc">
+    <joint name="pole_kinect_${number}_joint" type="fixed">
+      <origin xyz="${x_loc} ${y_loc} ${z_loc}" rpy="0 0 0"/>
+      <parent link="${parent}"/>
+      <child link="pole_kinect_${number}_link"/>
+    </joint>
+    <link name="pole_kinect_${number}_link">
+      <visual>
+        <origin xyz="0 0 -0.01" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://turtlebot_description/meshes/sensors/sensor_pole.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <cylinder length="0.0936" radius="0.006"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.020"/>
+        <origin xyz="0 0 0"/>
+        <inertia ixx="0.000014782" ixy="0.0" ixz="0.0"
+                 iyy="0.000014782" iyz="0.0"
+                 izz="0.000000360"/>
+      </inertial>
+    </link>
+  </xacro:macro>
+
+  <!-- 
+    Stack macro - all the components relative transforms are made with respect 
+    to the parent link (usually base_link). They could be made relative to each
+    other, but there is no necessary reason to do so.
+  -->
+  <xacro:macro name="stack_hull" params="parent">
+
+    <stack_3d_sensor_pole parent="${parent}" number="0" x_loc="-0.1024" y_loc= "0.098" z_loc="0.2372"/>
+    <stack_3d_sensor_pole parent="${parent}" number="1" x_loc="-0.1024" y_loc="-0.098" z_loc="0.2372"/>
+
+  <joint name="iv_pole_joint" type="fixed">
+      <origin xyz="-0.02 0.0  0.05" rpy="0 0 0"/>
+      <parent link="${parent}"/>
+      <child link="iv_pole_link"/>
+    </joint>  
+    <link name="iv_pole_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://turtlebot_description/meshes/stacks/med_hull/iv_pole.dae"/>
+        </geometry>
+      </visual>  
+      <collision>
+        <origin xyz="0.01364 0 0" rpy="0 0 0"/>
+        <geometry>
+          <cylinder length="0.006" radius="0.170"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="11.0"/>
+        <origin xyz="0 0 0"/>
+        <inertia ixx="0.003328" ixy="0.0" ixz="0.0"
+                 iyy="0.003328" iyz="0.0"
+                 izz="0.006656" />
+      </inertial>
+    </link>  <joint name="oxygen_tank_joint" type="fixed">
+      <origin xyz="-0.01364 0.0  0.05" rpy="0 0 0"/>
+      <parent link="${parent}"/>
+      <child link="oxygen_tank_link"/>
+    </joint>  
+    <link name="oxygen_tank_link">
+      <visual>
+        <origin xyz="-0.10 0 0.3" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://turtlebot_description/meshes/stacks/med_hull/oxygen_tank.dae"/>
+        </geometry>
+      </visual>  
+      <collision>
+        <origin xyz="0.01364 0 0" rpy="0 0 0"/>
+        <geometry>
+          <cylinder length="0.006" radius="0.170"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="11.0"/>
+        <origin xyz="0 0 0"/>
+        <inertia ixx="0.003328" ixy="0.0" ixz="0.0"
+                 iyy="0.003328" iyz="0.0"
+                 izz="0.006656" />
+      </inertial>
+    </link>
+    
+    <joint name="hull_joint" type="fixed">
+      <origin xyz="-0.01364 0.0  0.05" rpy="0 0 0"/>
+      <parent link="${parent}"/>
+      <child link="hull_link"/>
+    </joint>  
+    <link name="hull_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://turtlebot_description/meshes/stacks/med_hull/med_hull.dae"/>
+        </geometry>
+      </visual>  
+      <collision>
+        <origin xyz="0.01364 0 0" rpy="0 0 0"/>
+        <geometry>
+          <cylinder length="0.006" radius="0.170"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="11.0"/>
+        <origin xyz="0 0 0"/>
+        <inertia ixx="0.003328" ixy="0.0" ixz="0.0"
+                 iyy="0.003328" iyz="0.0"
+                 izz="0.006656" />
+      </inertial>
+    </link>
+  </xacro:macro>
+</robot>
