@@ -7,4 +7,4 @@ The driver for the base is a modified version of AutonomyLab’s create_autonomy
 
 Medbot’s odometry was improved by means of a BNO055 IMU (node written in python) and the robot_localization package, which is a general-purpose state estimation package that can fuse an arbitrary number of sensor data. Other components of Medbot include a 5V breaker board node to control some other devices.
 
-This is all for now. I will be updating the documentation soon and maybe create a wiki.
+This is all for now. I will be updating the documentation soon with installation instructions and maybe create a wiki.
